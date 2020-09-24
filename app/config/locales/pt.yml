@@ -1,0 +1,19 @@
+pt:
+  activerecord:
+    attributes:
+      default: &default_attributes
+        created_at: Cadastrado em
+        updated_at: Atualizado em
+      cnab:
+        <<: *default_attributes
+        code: CNPJ
+        operation_types:
+          debito: Débito
+          boleto: Boleto
+          financiamento: Financiamento
+          credito: Crédito
+          recebimento_emprestimo: Recebimento Empréstimo
+          vendas: Vendas
+          recebimento_ted: Recebimento TED
+          recebimento_doc: Recebimento DOC
+          aluguel: Aluguel

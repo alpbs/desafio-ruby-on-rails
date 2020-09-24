@@ -1,0 +1,37 @@
+<div class="file-upload-container">
+  <%= image_tag "https://cdn.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_752/https://www.bycoders.com.br/wp-content/uploads/2020/06/by.png" %>
+  <div class="form">
+    <%= form_tag cnab_path, multipart: true do%>
+      <%= file_field_tag "file" %>
+      <%= submit_tag 'Enviar', class: 'submit-button'%>
+    <% end %>
+  </div>
+</div>
+<%= render partial: 'flash_msg' %>
+<div class="operations-container">
+  <% @summary.each do |store, summary| %>
+    <div class="operation">
+      <h2> <%= store %> </h2>
+      <table>
+        <tr>
+          <th> Descrição </th>
+          <th> Valor </th>
+        </tr>
+        <% summary[:lines].each do |s| %>
+          <tr>
+            <td class="description"><%= t("activerecord.attributes.cnab.operation_types.#{s.operation_type}") %></td>
+            <td><span class="<%= total_class_color s.total%>"><%= number_to_currency(s.total, :unit => "R$ ", :separator => ",", :delimiter => ".") %></span>
+          </tr>
+        <%end%>
+        <tr class="balance">
+          <td>
+          </td>
+          <td>
+            <span class="<%= total_class_color summary[:balance]%>"><%= number_to_currency(summary[:balance], :unit => "R$ ", :separator => ",", :delimiter => ".") %></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <%end%>
+</div>
+
